@@ -12,7 +12,7 @@ body {
 }
 
 .main-container{
-  min-height: 90vh;     /* Uses full viewport height but allows growing if needed */
+  min-height: 80vh;     /* Uses full viewport height but allows growing if needed */
   display: flex;
   justify-content: center;
   align-items: center;
