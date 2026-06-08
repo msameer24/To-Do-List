@@ -29,18 +29,13 @@ body {
    border-radius: 10px;
    width: 350px;
    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-
-
 }
-
-
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
   font-size: 24px;
 }
-
 
 ul {
   list-style: none;
@@ -100,14 +95,10 @@ li button{
 }
 
 footer {
-  
   display: flex;
   flex-direction: column;
   text-align: center;
-  row-gap: 15px; /* Applies space only between vertical items */
-
-
-
+  row-gap: 15px;
 }
 
 .social-icon a{
