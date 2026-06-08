@@ -98,3 +98,32 @@ li {
 li button{
     background-color: red;
 }
+
+
+
+
+footer {
+  
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  row-gap: 15px; /* Applies space only between vertical items */
+
+
+
+}
+
+.social-icon a{
+  color: #b21157;
+  text-decoration: none ;
+  /* background : transparent; */
+}
+
+.sameer, .chaicode{
+  background-image: linear-gradient(to right, #d113df, #0eb5e9);
+  background-clip: text;
+  -webkit-background-clip: text; /* Required for Safari and older browsers */
+  color: transparent;
+  display: inline-block; /* Prevents the gradient from stretching past the text width */
+}
+
