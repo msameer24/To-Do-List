@@ -1,4 +1,9 @@
- // taking input text from input element and storing it 
+// Dom Content loader to load data from local storage after reload
+
+document.addEventListener('DOMContentLoaded', () =>{
+
+  
+// taking input text from input element and storing it 
 const inputdata = document.getElementById('input-text');
 
 
@@ -6,54 +11,78 @@ const inputdata = document.getElementById('input-text');
 const btn = document.getElementById('add-btn');
 
 
-
 // accessing the ul element to add li elements as task 
 const addlist = document.getElementById('add-item');  
 
 
 //  Storing the data to local Storage 
+ let tasks = JSON.parse( localStorage.getItem("tasks") ) || [];
 
-// let tasks = [];
-
+ tasks.forEach((task) => renderTask(task));
 
 // function to adding ( adding tasks ) li item to ul list 
 
 btn.addEventListener('click', function(){
-     
+  
   // taking the input content to a variable
-    const textValue = inputdata.value;
-    if(textValue == ''){
-      return;
-    }
-   
-    // creating a new item when we click on add task button 
-    const newItem = document.createElement("li");
+  const textValue = inputdata.value;
+  if(textValue == ''){
+    return;
+  }
 
-    // creating a delete button in task button 
-     const delbtn = document.createElement('button')
-     
-     
-    
-     
-    //  puttion the text we get from input to the new task li element 
-     newItem.textContent = textValue;
-    
-    //  text on delet button
-     delbtn.textContent = "Delete";
-     
-    //  adding button to task item 
-     newItem.appendChild(delbtn);
+  const newTask = {
+    id: Date.now(),
+    text : textValue,
+  }
 
-     //  adding task to ul list 
-    addlist.appendChild(newItem);
-    
+    tasks.push(newTask);
+    renderTask(newTask);
+    saveTask();
+    inputdata.value = "";  // clear text input
+    console.log(tasks);
 
-    // deleting the asks which i click only
-     delbtn.addEventListener('click', () => {
-        newItem.remove();
-     })
-
-     inputdata.value = "";
 
 
 })
+
+
+
+function renderTask(task) {
+
+
+
+ const newItem = document.createElement("li");
+
+ const delbtn = document.createElement('button')
+
+
+ newItem.textContent = task.text;
+
+ delbtn.textContent = "Delete";
+
+ addlist.appendChild(newItem);
+ 
+ newItem.appendChild(delbtn);
+ 
+// delete button which come on the task list to delete the task
+            delbtn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              newItem.remove();
+              tasks = tasks.filter((t) => t.id !== task.id);
+              saveTask();
+              
+              console.log(tasks);
+            })
+
+}
+
+
+
+
+function saveTask() {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+})
+
+
